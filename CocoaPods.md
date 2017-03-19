@@ -1,6 +1,6 @@
 # CocoaPods
 -- 
-## 小技巧一：
+## 问题一：
 在团队开发中，由于团队成员使用的是不同的`cocoapods gem`的安装版本，当有成员执行`pod install`命令时，其他成员更新代码就会报错。
 
 解决方案：使用`Gemfile`指定`cocoapods gem`的使用版本
@@ -13,3 +13,12 @@
 当更新了`Gemfile`文件并且自动安装了正确的`gem`后，确保团队每个成员都运行一次`bundle install`。
 
 此后，只需要运行`bundle exec pod install`命令安装新的`CocoaPods`--这将会通过`Gemfile`文件中指定`cocoapods gem`的版本安装`pods`。
+
+## 问题二：
+ERROR: While executing gem ... (Gem::Exception) Unable to require openssl, install OpenSSL and rebuild ruby (preferred) or use non-HTTPS sources
+
+```ruby
+	sudo gem update --system -n/usr/local/bin
+	sudo gem install -n /usr/local/bin cocoapods
+	pod setup
+```
