@@ -1,9 +1,14 @@
-# iOS开发中常用的库整理
+# iOS开发中常用的库整理(备用)
 ## App框架
 * [Nimbus](https://github.com/jverkoey/nimbus) 是一个开源的iOS框架，比起Three20，Nimbus的文档更为全面、丰富，能够实现很多非常炫的界面特效。因此，开发者可以借助Nimbus来降低项目设计的复杂度。
 * [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa) 受函数响应式编程激发。不同于使用可变的变量替换和就地修改，RAC提供Signals来捕获当前值和将来值。
 * [samurai-native](https://github.com/hackers-painters/samurai-native) 是一个基于浏览器内核通过HTML+CSS 开发原生移动应用的iOS框架。
 * [AsyncDisplayKit](https://github.com/facebook/AsyncDisplayKit) 异步界面渲染库,为极限优化View效果而生（同时提供 UIView bridge 接口） Smooth asynchronous user interfaces for iOS apps.
+* [pop](https://github.com/facebook/pop) FaceBook那神奇的动画引擎。
+* [AGGeometryKit](https://github.com/hfossli/AGGeometryKit) 几何图形框架，把AGGeometryKit和POP结合起来使用，可实现非常棒的动态和动画。
+* [KVOController](https://github.com/facebook/KVOController) FaceBook出品，基于Cocoa的KVO开发，提供简单地使用方式，同时也是线程安全的。
+* [Aspects](https://github.com/steipete/Aspects) 过method swizzling技术，能够在一个类的现有方法执行之前或之后附加一个代码片段（以block方式），能极大的方便我们调试。
+* [PSPDFKit](https://github.com/PSPDFKit/PSPDFKit-Demo) 十分强大的PDF开发框架，有异步加载、预览、编辑、加标注等很多功能。
 
 ---
 
@@ -37,6 +42,7 @@
 
 ## AutoLayout
 * [Masonry](https://github.com/SnapKit/Masonry) 是一个轻量级的布局框架，拥有自己的描述语法，采用更优雅的链式语法封装自动布局，简洁明了并具有高可读性
+* [SnapKit](https://github.com/SnapKit/SnapKit) Masonry的Swift移植版
 * [PureLayout](https://github.com/PureLayout/PureLayout) 是 iOS & OS X Auto Layout 的终极 API——非常简单，又非常强大。PureLayout 通过一个全面的Auto Layout API 扩展了 UIView/NSView, NSArray 和 NSLayoutConstraint，仿照苹果自身的框架。
 * [UITableView-FDTemplateLayoutCell](https://github.com/forkingdog/UITableView-FDTemplateLayoutCell) 是一个方便缓存 UITableViewCell 的高度的框架。
 * [UIView-FDCollapsibleConstraints](https://github.com/forkingdog/UIView-FDCollapsibleConstraints) 一个AutoLayout辅助工具，最优雅的方式解决自动布局中子View的动态显示和隐藏的问题。第二个Demo模拟了一个经典的FlowLayout，任意一个元素隐藏时，底下的元素需要自动“顶”上来，配合这个扩展，你可以在IB里连一连，选一选，不用一行代码就能搞定。
