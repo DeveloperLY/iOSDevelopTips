@@ -22,3 +22,29 @@ ERROR: While executing gem ... (Gem::Exception) Unable to require openssl, insta
 	sudo gem install -n /usr/local/bin cocoapods
 	pod setup
 ```
+
+## 问题三：
+编译出现找不到`libPods.a`
+在`Build Setting` > `Other Linker Flag`:
+将所有`$(TARGET_BUILD_DIR)` 改成 `$(BUILT_PRODUCTS_DIR)`即可
+
+## 问题四：
+出现`error: RPC failed; result=52, HTTP code = 0`
+
+```ruby
+更新pod:
+$ pod setup
+更新gem到最新版本：
+$ sudo gem update --system 
+检查ping到github：
+$ ping github.com
+查看pob repo list：
+$ pod repo list
+结果显示0 repos，说明没有安装成功；
+删除.cocoapods目录，重新下载pod更新：
+$ cd ~/.cocoapods/
+$ sudo -rm -rf ~/.cocoapods/
+重新执行 $ pod setup
+
+现在pod intall指令就能用啦
+```
