@@ -121,7 +121,7 @@ pod 'VenderName', :podspec => 'VenderName.podspec的路径地址'
 还可以指定引用某个分支的代码
 
 ```ruby
-pod 'VenderName', :git => 'https://coding.net/CodingZero/VenderName.git', :branch => 'develop'
+pod 'VenderName', :git => 'https://git.coding.net/CodingZero/VenderName.git', :branch => 'develop'
 ```
 
 提交到私有仓库的时候还可以忽略警告类的错误, 愣是要提交. 在后面加上`--allow-warnings`
@@ -138,9 +138,9 @@ pod update VenderName --no-repo-update
 ## 15.使用的时候还可以通过直接指定地址 + `tag` or `分支` or `commit` 的方式来引入, 这样就可以不用走发布流程了. 也不需要添加源了.
 
 ```ruby
-pod 'VenderName', :git => 'https://coding.net/CodingZero/VenderName.git', :tag => '0.8.1'
+pod 'VenderName', :git => 'https://git.coding.net/CodingZero/VenderName.git', :tag => '0.8.1'
 
-pod 'VenderName', :git => 'https://coding.net/CodingZero/VenderName.git', :branch => 'develop'
+pod 'VenderName', :git => 'https://git.coding.net/CodingZero/VenderName.git', :branch => 'develop'
 
-pod 'VenderName', :git => 'https://coding.net/CodingZero/VenderName.git', :commit => '0812fe81319af2411233'
+pod 'VenderName', :git => 'https://git.coding.net/CodingZero/VenderName.git', :commit => '0812fe81319af2411233'
 ```
