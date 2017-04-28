@@ -4,7 +4,7 @@
 先`coding.net`、`OSChina`、`GitHub`或者自己搭建的`Git`服务器上创建一个私有仓库，然后在本地添加仓库
 
 ```ruby
-pod repo add LYSpecs https://coding.net/CodingZero/LYSpecs.git
+pod repo add LYSpecs https://git.coding.net/CodingZero/LYSpecs.git
 ```
 
 ## 2.创建私有库
@@ -44,7 +44,7 @@ pod lib create VenderName
 * 提交到私有仓库
 
  ```ruby
- pod repo push PHSpecs VenderName.podspec --allow-warnings --verbose
+ pod repo push LYSpecs VenderName.podspec --allow-warnings --verbose
 // --allow-warnings : 允许 警告，有一些警告是代码自身带的。
 // --use-libraries  : 私有库、静态库引用的时候加上
 // —verbose ： lint显示详情
@@ -54,7 +54,7 @@ pod lib create VenderName
 * 添加私有仓库
 
  ```ruby
- pod repo add LYSpecs https://coding.net/CodingZero/LYSpecs.git
+ pod repo add LYSpecs https://git.coding.net/CodingZero/LYSpecs.git
  ```
  
 * 用的时候需要在`Podfile`里添加源
@@ -64,7 +64,7 @@ pod lib create VenderName
 source 'https://github.com/CocoaPods/Specs.git'
 # ...相关库
 // 私有库地址
-source 'https://coding.net/CodingZero/LYSpecs.git'
+source 'https://git.coding.net/CodingZero/LYSpecs.git'
 # ...私有库
  ```
  
