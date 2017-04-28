@@ -1,4 +1,4 @@
-# Cocoapods制作私有库Tips
+# `CocoaPods`私有库`Tips` 
 
 ## 1.`pod lib lint` 和 `pod spec lint` 命令的区别
 * `pod lib lint`是只从本地验证你的pod能否通过验证;
@@ -31,7 +31,32 @@ s.ios.vendored_frameworks = "xxx/**/*.framework"
 s.ios.vendored_libraries = "xxx/**/*.a”
 ```
 
-## 6.私有库中添加资源(图片、音视频等)
+## 6.引用静态库：`(.ios).library`。去掉头尾的`lib`，用”`,`”分割
+
+```ruby
+// 引用libxml2.lib和libz.lib.
+spec.libraries =  'xml2', 'z'
+```
+
+## 7.引用公有framework：`(.ios).framework`. 用”`,`”分割. 去掉尾部的”`.framework`”
+
+```ruby
+spec.frameworks = 'UIKit','SystemConfiguration', 'Accelerate'
+```
+
+## 8.引用自己生成的framework：`(.ios).vendored_frameworks`。用”`,`”分割,路径写从`.podspec`所在目录为根目录的相对路径 ps:这个不要省略`.framework`
+
+```ruby
+spec.ios.vendored_frameworks = 'Pod/Assets/*.framework'
+```
+
+## 9.引用自己生成的`.a`文件, 添加到`Pod/Assets`文件夹里. Demo的Example文件夹里也需要添加一下, 不然找不到
+
+```ruby
+spec.ios.vendored_libraries = 'Pod/Assets/*.a'
+```
+在提交到私有仓库的时候需要加上`--use-libraries`
+## 10.私有库中添加资源(图片、音视频等)
 方法共有三种:
 
 * 第一种
@@ -73,11 +98,49 @@ NSBundle *resourceBundle = [NSBundle bundleWithURL: bundleURL];
 UIImage *imgage = [UIImage imageNamed:icon inBundle:resourceBundle compatibleWithTraitCollection:nil];
  ```
  
-## 7.如果私有库添加了静态库或者`dependency`用了静态库
+## 11.如果私有库添加了静态库或者`dependency`用了静态库
 那么执行`pod lib lint`还有`pod spec lint`时候需要加上`—user-libraries`选项,否则会出现`'The 'Pods' target has transitive dependencies`错误
 
-## 8.如果私有库只引用其他库的`subspec`
+## 12.如果私有库只引用其他库的`subspec`
 只需要依赖想依赖的`subspec`，不用管主`spec`（因为依赖`subspec`必然要依赖主`spec`）
 
-## 9.私有库已经通过验证并传到私有`repo`也能通过`pod search`，但是就是`pod install`失败
+## 13.私有库已经通过验证并传到私有`repo`也能通过`pod search`，但是就是`pod install`失败
 这时候只要执行`pod update`
+
+## 14.提交到私有仓库的之前可以先验证一下, 有问题就修复它, 验证过了在提交
+
+```ruby
+pod spec lint VenderName.podspec --verbose
+```
+打好`tag`, 推到`Git`里去后, 才可以在测试的项目里的`Podfile`里引用这个库, 然后`pod update VenderName --no-repo-update`, 测试通过了, 在提交到私有仓库里
+
+```ruby
+pod 'VenderName', :podspec => 'VenderName.podspec的路径地址'
+```
+
+还可以指定引用某个分支的代码
+
+```ruby
+pod 'VenderName', :git => 'https://coding.net/MyLibrary/VenderName.git', :branch => 'develop'
+```
+
+提交到私有仓库的时候还可以忽略警告类的错误, 愣是要提交. 在后面加上`--allow-warnings`
+
+```ruby
+pod repo push LYSpecs VenderName.podspec --allow-warnings
+```
+如果有添加新的文件, 需要更新下引索, `Demo`里才可以识别
+
+```ruby
+pod update VenderName --no-repo-update
+```
+
+## 15.使用的时候还可以通过直接指定地址 + `tag` or `分支` or `commit` 的方式来引入, 这样就可以不用走发布流程了. 也不需要添加源了.
+
+```ruby
+pod 'VenderName', :git => 'https://coding.net/MyLibrary/VenderName.git', :tag => '0.8.1'
+
+pod 'VenderName', :git => 'https://coding.net/MyLibrary/VenderName.git', :branch => 'develop'
+
+pod 'VenderName', :git => 'https://coding.net/MyLibrary/VenderName.git', :commit => '0812fe81319af2411233'
+```
