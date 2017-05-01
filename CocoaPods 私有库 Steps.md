@@ -81,12 +81,6 @@ Would you like to include a demo application with your library? [ Yes / No ]
  ```
  
 ## 4.使用私有库
-* 添加私有仓库
-
- ```ruby
- pod repo add LYSpecs https://git.coding.net/CodingZero/LYSpecs.git
- ```
- 
 * 用的时候需要在`Podfile`里添加源
 
  ```ruby
