@@ -48,7 +48,6 @@ Would you like to include a demo application with your library? [ Yes / No ]
 
 ## 3.更新发布私有库
 
-
 * 提交代码
 
  ```ruby
