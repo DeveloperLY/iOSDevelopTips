@@ -41,10 +41,10 @@ Would you like to include a demo application with your library? [ Yes / No ]
  
 * 第五个问题是询问 类的前缀`eg: LY`
  
-  ```ruby
-  What is your class prefix?
+ ```ruby
+ What is your class prefix?
  > LY
-  ```
+ ```
 
 ## 3.更新发布私有库
 
