@@ -78,7 +78,7 @@ Would you like to include a demo application with your library? [ Yes / No ]
  pod repo push LYSpecs VenderName.podspec --allow-warnings --verbose
 // --allow-warnings : 允许 警告，有一些警告是代码自身带的。
 // --use-libraries  : 私有库、静态库引用的时候加上
-// —verbose ： lint显示详情
+// —-verbose ： lint显示详情
  ```
  
 ## 4.使用私有库
