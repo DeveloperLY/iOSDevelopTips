@@ -1,6 +1,6 @@
 # CocoaPods
 -- 
-## 问题一：
+## 问题1：
 在团队开发中，由于团队成员使用的是不同的`cocoapods gem`的安装版本，当有成员执行`pod install`命令时，其他成员更新代码就会报错。
 
 解决方案：使用`Gemfile`指定`cocoapods gem`的使用版本
@@ -14,7 +14,7 @@
 
 此后，只需要运行`bundle exec pod install`命令安装新的`CocoaPods`--这将会通过`Gemfile`文件中指定`cocoapods gem`的版本安装`pods`。
 
-## 问题二：
+## 问题2：
 ERROR: While executing gem ... (Gem::Exception) Unable to require openssl, install OpenSSL and rebuild ruby (preferred) or use non-HTTPS sources
 
 ```ruby
@@ -23,12 +23,12 @@ ERROR: While executing gem ... (Gem::Exception) Unable to require openssl, insta
 	pod setup
 ```
 
-## 问题三：
+## 问题3：
 编译出现找不到`libPods.a`
 在`Build Setting` > `Other Linker Flag`:
 将所有`$(TARGET_BUILD_DIR)` 改成 `$(BUILT_PRODUCTS_DIR)`即可
 
-## 问题四：
+## 问题4：
 出现`error: RPC failed; result=52, HTTP code = 0`
 
 ```ruby
@@ -48,6 +48,14 @@ $ sudo -rm -rf ~/.cocoapods/
 
 现在pod intall指令就能用啦
 ```
+
+## 问题5：
+报错: [!] Unable to add a source with url `https://github.com/CocoaPods/Specs.git` named `master-1`.
+You can try adding it manually in `~/.cocoapods/repos` or via `pod repo add`.
+
+解决方法：这是因为电脑里安装了另外一个Xcode导致cocoapods找不到路径了
+在终端执行 `sudo xcode-select -switch /Applications/Xcode.app` 即可
+
 
 # Tips
 ## CocoaPods：在多target中安装相同pod的优雅解决方案
