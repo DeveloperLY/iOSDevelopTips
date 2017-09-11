@@ -1,4 +1,4 @@
-# `CocoaPods`私有库`Tips` 
+# `CocoaPods`私有库使用`Tips` 
 
 ## 1.`pod lib lint` 和 `pod spec lint` 命令的区别
 * `pod lib lint`是只从本地验证你的pod能否通过验证;
@@ -61,42 +61,42 @@ spec.ios.vendored_libraries = 'Pod/Assets/*.a'
 
 * 第一种
 
- ```ruby
+```ruby
  spec.resources = ["Images/*.png", "Sounds/*"]
- ```
+```
 但是这些资源会在打包的时候直接拷贝的`App`的`Bundle`中，这样说不定会和其它资源产生命名冲突；
 
 * 第二种
 
- ```ruby
+```ruby
  spec.resource = "Resources/MyLibrary.bundle"
- ```
+```
  把资源都放在`bundle`中，然后打包时候这个`bundle`会直接拷贝进`App`的`mainBundle`中。使用的时候在`mainBundle`中查找这个`bundle`然后再搜索具体资源:
  
- ```Objective-C
+```Objective-C
  NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"MyLibrary" withExtension:@"bundle"];
-  NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
-  UIImage *imgage = [UIImage imageNamed:icon inBundle:bundle compatibleWithTraitCollection:nil];
- ```
+ NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+ UIImage *imgage = [UIImage imageNamed:icon inBundle:bundle compatibleWithTraitCollection:nil];
+```
  
 * 第三种
 
- ```ruby
+```ruby
  spec.resource_bundles = {
-		'MyLibrary' => ['Resources/*.png'],
-	 	'OtherResources' => ['OtherResources/*.png']
+	 'MyLibrary' => ['Resources/*.png'],
+	 'OtherResources' => ['OtherResources/*.png']
  }
- ```
+```
  
  这种方法利用`framework`的命名空间，有效防止了资源冲突。
 使用方法是先拿到最外面的`bundle`，然后再去找下面指定名字的`bundle` 对象，再搜索具体资源:
 
- ```Objective-C
- NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+```Objective-C
+NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 NSURL *bundleURL = [bundle URLForResource:@"MyLibrary" withExtension:@"bundle"];
 NSBundle *resourceBundle = [NSBundle bundleWithURL: bundleURL];
 UIImage *imgage = [UIImage imageNamed:icon inBundle:resourceBundle compatibleWithTraitCollection:nil];
- ```
+```
  
 ## 11.如果私有库添加了静态库或者`dependency`用了静态库
 那么执行`pod lib lint`还有`pod spec lint`时候需要加上`—user-libraries`选项,否则会出现`'The 'Pods' target has transitive dependencies`错误
