@@ -76,7 +76,7 @@ git cherry-pick commit-id
 ### 2. SourceTree
 选中想要合并至当前分支 -> 右键点击 -> 选择遴选 -> 确认
 
-# 从版本库中彻底删除某个文件，不再显示在历史记录中（例如：账号/密码）
+# Git - 从版本库中彻底删除某个文件，不再显示在历史记录中（例如：账号/密码）
 
 ```
 git filter-branch -f --tree-filter 'rm -rf vendor/gems' HEAD

@@ -1,4 +1,4 @@
-# CocoaPods
+# CocoaPods 的使用Tips
 -- 
 ## 问题1：
 在团队开发中，由于团队成员使用的是不同的`cocoapods gem`的安装版本，当有成员执行`pod install`命令时，其他成员更新代码就会报错。

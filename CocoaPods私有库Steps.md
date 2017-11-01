@@ -133,7 +133,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  这个是教程的 私有库项目 学习Demo. （主要：比s.ummary要长）
+  这个是教程的 私有库项目 学习Demo. （主要：比s.summary要长）
                        DESC
   #主页,这里要填写可以访问到的地址，不然验证不通过
   s.homepage         = 'https://coding.net/CodingZero/VenderName'
