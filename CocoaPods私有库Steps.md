@@ -14,32 +14,39 @@ pod repo add LYSpecs https://git.coding.net/CodingZero/LYSpecs.git
 pod lib create VenderName
 ```
 
-* 第一个问题是问你选择`Swift`还是`Objc`构建项目。`eg: ObjC `
+* 第一个问题是问你选择那个平台`iOS`还是`macOS`。`eg:iOS`
 
  ```ruby
-hat language do you want to use?? [ Swift / ObjC ]
+ What platform do you want to use? [ iOS / macOS ]
+ > iOS
+ ```
+
+* 第二个个问题是问你选择`Swift`还是`Objc`构建项目。`eg: ObjC `
+
+ ```ruby
+ hat language do you want to use?? [ Swift / ObjC ]
  > ObjC
  ```
-* 第二个问题问你是否需要创建一个Demo项目`eg: Yes`
+* 第三个问题问你是否需要创建一个Demo项目`eg: Yes`
 
  ```ruby
 Would you like to include a demo application with your library? [ Yes / No ]
  > Yes
  ```
-* 第三个问题让你是否选择一个测试框架`eg: None`
+* 第四个问题让你是否选择一个测试框架`eg: None`
 
  ```ruby
  Which testing frameworks will you use? [ Specta / Kiwi / None ]
  > None
  ```
-* 第四个问题是否基于View测试`eg: No`
+* 第五个问题是否基于View测试`eg: No`
 
  ```ruby
  Would you like to do view based testing? [ Yes / No ]
  > No
  ```
  
-* 第五个问题是询问 类的前缀`eg: LY`
+* 第六个问题是询问 类的前缀`eg: LY`
  
  ```ruby
  What is your class prefix?
