@@ -109,3 +109,11 @@ git push origin --force
 ```
    git push -f origin master
 ```
+
+# 如果标签已经推送到远程，要删除远程标签，先从本地删除：
+```
+# 先从本地删除
+git tag -d v1.0
+# 然后删除远程
+
+```
