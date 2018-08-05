@@ -1,3 +1,17 @@
+# Git 的基本使用命令
+```
+git init # 在当前项目目录中生成本地git管理,并建立一个隐藏.git目录
+git add . # 添加当前目录中的所有文件到索引
+git commit -m "first commit"  #提交到本地源码库，并附加提交注释
+git remote add origin https://github.com/DeveloperLY/Test.git  # 添加到远程项目，别名为origin
+git push -u origin master # 把本地源码库push到github 别名为origin的远程项目中，确认提交
+git tag # 打开本地标签备份
+git push —tags # 提交所有的本地标签
+git tag -d 标签名 # 删除本地标签
+git push origin:标签名 # 删除远程标签
+
+```
+
 # Git - 常见错误与解决方案
 
  1. [error: The following untracked working tree files would be overwritten by checkout:](http://www.druhosting.com/content/git-error-following-untracked-working-tree-files-would-be-overwritten-checkout)
@@ -115,5 +129,5 @@ git push origin --force
 # 先从本地删除
 git tag -d v1.0
 # 然后删除远程
-
+git push origin :refs/tags/v1.0
 ```
