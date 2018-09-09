@@ -45,3 +45,9 @@ self.modalPresentationStyle = UIModalPresentationCurrentContext;
 } 
 [self presentViewController:na animated:YES completion:nil];
  ```
+ 
+* 打印全 NSLog 日志输出
+
+ ```
+ #define NSLog( s, ... ) printf("[ %s:(%d) ] %s :%s\n", [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:(s), ##__VA_ARGS__] UTF8String])
+ ```
