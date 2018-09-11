@@ -51,3 +51,23 @@ self.modalPresentationStyle = UIModalPresentationCurrentContext;
  ```
  #define NSLog( s, ... ) printf("[ %s:(%d) ] %s :%s\n", [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:(s), ##__VA_ARGS__] UTF8String])
  ```
+* 快速定位使用`Masonry`布局时出现的约束警告
+	* 把`View`的内存地址换成了具体的`View`，其实我们可以通过`Xcode`中的`【Debug View Hierarchy】`，根据约束警告的内存地址（比如：`0x147f56930`）找到内存地址对应的`View()`，把内存地址粘贴到搜索框，然后一样做替换操作，即可解决约束警告。
+	* 使用`Masonry`自带的`MASAttachKeys`宏来给`View`添加`key`,然后有约束警告的话就会知道具体哪个`View`布局有问题。
+	
+	```
+	UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom ]; 
+	btn1.backgroundColor = [UIColor redColor];
+	 MASAttachKeys(btn1); // Masonry 布局冲突快速定位，设置key必须在布局之前设置，否则无效！ 
+	 [self.view addSubview:btn1]; 
+	 [btn1 mas_makeConstraints:^(MASConstraintMaker *make) { 
+	 make.left.top.offset(80); 
+	 make.size.mas_equalTo(CGSizeMake(100, 100)); 
+	 }]; 
+	 // 制造约束冲突 
+	 [btn1 mas_makeConstraints:^(MASConstraintMaker *make) { 
+	 make.left.top.offset(100); 
+	 make.size.mas_equalTo(CGSizeMake(100, 100)); 
+	 }];
+
+	```
