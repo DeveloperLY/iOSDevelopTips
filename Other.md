@@ -71,3 +71,27 @@ self.modalPresentationStyle = UIModalPresentationCurrentContext;
 	 }];
 
 	```
+	
+* 实现控件周边的发散阴影
+
+ ```
+ UIImageView *image = [UIImageView new]; 
+ image.frame = CGRectMake(100, 100, 300, 300);
+ [self.view addSubview:image]; 
+ self.image = image; 
+ image.center = self.view.center; 
+ image.image = [UIImage imageNamed:@"test.jpg"]; 
+ 
+ // image.layer.cornerRadius = 15; 
+ //偏移距离
+ image.layer.shadowOffset = CGSizeMake(5, 5); 
+ //透明度 
+ image.layer.shadowOpacity = 0.8; 
+ //阴影颜色 
+ image.layer.shadowColor = [UIColor lightGrayColor].CGColor; 
+ //阴影半径 
+ image.layer.shadowRadius = 30; 
+ UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-20,-20, image.frame.size.width + 40, image.frame.size.height + 40) cornerRadius:1.0]; 
+ //阴影路径 
+ image.layer.shadowPath = path.CGPath;
+ ```
