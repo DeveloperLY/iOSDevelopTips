@@ -113,3 +113,45 @@ self.modalPresentationStyle = UIModalPresentationCurrentContext;
     shapeLayer.path = bezierPath.CGPath;
     self.imageView.layer.mask = shapeLayer;
    ```
+ 
+* 使用 YYText 自定义文字截断 例如 省略号+全文
+* 
+ ```
+ 	// 1. 创建一个属性文本
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"Some Text, blab创建一个属性文本"];
+    
+    // 2. 为文本设置属性
+    text.font = [UIFont boldSystemFontOfSize:20];
+    text.color = [UIColor blueColor];
+    
+    // 3. 赋值到 YYLabel 或 YYTextView
+    YYLabel *label = [YYLabel new];
+    label.backgroundColor = [UIColor greenColor];
+    label.frame = CGRectMake(10, 100, 300, 50);
+    label.attributedText = text;
+    self.label = label;
+    label.userInteractionEnabled = YES;
+    
+    // 截断文字
+    NSMutableAttributedString *more = [[NSMutableAttributedString alloc] initWithString:@"···【全文】"];
+    __weak typeof(self) _self = self;
+    YYTextHighlight *hi = [YYTextHighlight new];
+    [hi setColor:[UIColor colorWithRed:0.578 green:0.790 blue:1.000 alpha:1.000]];
+    hi.tapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
+        YYLabel *label = _self.label;
+        label.width = 375-20;
+        label.truncationToken = nil;
+        NSLog(@"-----%@", text);
+    };
+    
+    [more setColor:[UIColor redColor] range:[more.string rangeOfString:@"【全文】"]];
+    [more setTextHighlight:hi range:[more.string rangeOfString:@"【全文】"]];
+    more.font = _label.font;
+    YYLabel *seeMore = [YYLabel new];
+    seeMore.attributedText = more;
+    [seeMore sizeToFit];
+    NSAttributedString *truncationToken = [NSAttributedString attachmentStringWithContent:seeMore contentMode:UIViewContentModeCenter attachmentSize:seeMore.size alignToFont:text.font alignment:YYTextVerticalAlignmentCenter];
+    _label.truncationToken = truncationToken;
+    [self.view addSubview:label];
+ 
+ ```
