@@ -95,3 +95,21 @@ self.modalPresentationStyle = UIModalPresentationCurrentContext;
  //阴影路径 
  image.layer.shadowPath = path.CGPath;
  ```
+ 
+* 切割指定位置圆角
+	* 1、用贝赛尔曲线绘制指定圆角的路径
+	* 2、创建一个`CAShapeLayer`，设置`shapeLayer.path`等于绘制的路径
+	* 3、将	`shapeLayer`作为控件的`layer.mask`
+	
+   ```
+ 	/**
+     rect           : 被传入View的bounds
+     corners        : 圆角的位置（枚举：左上、左下、右上、右下，用 ‘|’ 可组合使用）
+     cornerRadii    : 圆角大小（CGSize）
+     */
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.imageView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10.0f, 10.0f)];
+    CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
+    shapeLayer.frame = self.imageView.bounds;
+    shapeLayer.path = bezierPath.CGPath;
+    self.imageView.layer.mask = shapeLayer;
+   ```
