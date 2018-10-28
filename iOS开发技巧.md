@@ -24,3 +24,25 @@ for (UIViewController *temVC in temArray) {
     }
  }
 ```
+
+### 四、
+```
+AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+if (appDelegate.window.rootViewController) 	appDelegate.window.rootViewController = nil;
+
+LYTestVC *testVC = [[LYTestVC alloc]init];
+appDelegate.window.rootViewController = [[LYNavigationController alloc] initWithRootViewController: testVC];
+
+```
+
+### 五、
+```
+LYTestVC * testVC = [[LYTestVC alloc] init];
+[self.navigationController pushViewController: testVC animated:YES];
+```
+
+### 六、
+```
+// dissmiss 返回根部控制器
+[self.presentingViewController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+```
