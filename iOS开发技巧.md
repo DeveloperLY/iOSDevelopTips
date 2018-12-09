@@ -101,3 +101,16 @@ LYTestVC * testVC = [[LYTestVC alloc] init];
 ```
 
 这个是判断系统的`VPN`状态，还有一种是调起`vpnExtension`或着说`NEVPNManager`的时候的`vpn`状态可以通过实例化`NEVPNManager`，然后通过`manager.connection.status`来获取当前的`VPN`状态
+
+# iOS一些杂技术
+## 一、关于向前声明
+```
+为避免循环引用，`C`语言有一个前向声明的机制，即仅仅告诉存在性，而不理会具体实现。
+`C++`使用`class`关键字实现前向声明。
+在`Objective-C`中则是使用`@class`关键字
+
+```
+
+用`clang -rewrite-objc`查看后发现`OC`语法解析后的`C++`代码并非使用`class`来前置声明一个类，而是`typedef struct objc_object Son`;
+这种方式来声明`Son`类。所以我们完全可以用`typedef struct objc_object MyClass`来代替`@class`.
+可是并不会有人这样做。
