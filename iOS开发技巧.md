@@ -114,3 +114,19 @@ LYTestVC * testVC = [[LYTestVC alloc] init];
 用`clang -rewrite-objc`查看后发现`OC`语法解析后的`C++`代码并非使用`class`来前置声明一个类，而是`typedef struct objc_object Son`;
 这种方式来声明`Son`类。所以我们完全可以用`typedef struct objc_object MyClass`来代替`@class`.
 可是并不会有人这样做。
+
+## 二、关于 Objective-C 访问权限的一些事
+在`Objective-C`中，只有成员数据可以是`private`，`protected`和`public`的，默认是`protected`。
+方法只能是`public`的。实际上在头文件声明一个方法和`.m`中是一样的，`.m`中使用分类机制`（class categories）`声明方法，虽然暂时隐藏方法，但是得益于`Objective-C`的动态性，我们可以用`performSelector`: 
+
+```
+	Foo *foo = [Foo new];
+	[foo performSelector:NSSelectorFromString(@"apple")]; 
+	
+	
+    @implementation Foo
+
+    - (int) apple {
+       return 10;
+     } 
+```
