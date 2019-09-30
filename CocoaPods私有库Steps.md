@@ -183,3 +183,11 @@ Pod::Spec.new do |s|
   # s.dependency 'AFNetworking', '~> 2.3'
 end
 ```
+
+## 6.pod 注册后如何更改 CocoaPods 的 trunk 用户名
+
+```
+grep -A2 'trunk.cocoapods.org' ~/.netrc
+
+curl -v -H "Authorization: Token <MY CURRENT TOKEN>" -H "Content-Type: application/json" -X POST -d '{"email":"<MY EMAIL>","name":"<MY NEW NAME>","description":"<My DESCRIPTION>"}' https://trunk.cocoapods.org/api/v1/sessions
+```
