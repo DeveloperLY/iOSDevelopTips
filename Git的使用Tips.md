@@ -131,3 +131,11 @@ git tag -d v1.0
 # 然后删除远程
 git push origin :refs/tags/v1.0
 ```
+
+# GitHub Fork之后 更新步骤
+* 1 bash进入项目目录
+* 2 git remote add upstream 上游仓库名称.git
+* 3 git checkout master
+* 4 git fetch upstream
+* 5 git merge upstream/master
+* 6 git push origin master
